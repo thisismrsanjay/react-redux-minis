@@ -77,4 +77,79 @@ class Cars extends Component{
 }
 
 
+
+class App extends Component {
+ 
+
+  render() {
+    return (
+      <div className="App">
+        <Body/>
+      </div>
+    );
+  }
+}
+
+class Body extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      r:0
+    }
+    this.getRandomNumber = this.getRandomNumber.bind(this);
+  }
+  getRandomNumber(){
+    this.setState({r:Math.floor(Math.random()*10)})
+  }
+
+  render(){
+    return(
+      <div>
+        <p className="App-intro">
+          To get started, edit something
+        </p>
+        <button onClick={this.getRandomNumber}>Random Number</button>
+        <Numbers myNumber={this.state.r}/>
+      </div>
+    )
+  }
+
+}
+
+class Numbers extends Component {
+
+  componentWillMount(){
+    console.log("component will mount here");
+  }
+  componentDidMount(){
+    console.log("component Did mount here");
+  }
+  componentWillReciveProps(newProps){
+    console.log("component will recive props");
+  }
+  shouleComponentUpdate(newProps,nextState){
+    console.log('called should component Update')
+    return true;
+  }
+  componentWillUpdate(newProps,nextState){
+    console.log('called component will update');
+  }
+  componentDidUpdate(newProps,nextState){
+    console.log('Called component will update');
+  }
+  componentWillMount(){
+    console.log('Called component will unmount');
+  }
+
+  render(){
+    return(
+      <div>
+        {this.props.myNumber}
+      </div>
+    )
+  }
+}
+
+
+
 export default App;
