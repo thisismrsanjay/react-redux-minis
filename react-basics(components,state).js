@@ -3,11 +3,40 @@ import './App.css';
 import Header from './Header';
 import Intro from './Intro';
 
-class App extends Component {
- 
 
+//timer
+//App.js
+ <Timer start={Date.now()}/>
+  
+//Timer Component
+class Timer extends Component{
+    componentDidMount(){
+        this.timer=setInterval(this.ticker,1000);
+    }
+    ticker(){
+        this.setState({clock:new Date()-this.props.start})
+    }
+    constructor(props){
+        super(props);
+        this.state ={
+                clock:0
+            }
+        this.ticker = this.ticker.bind(this);  
+    }
+    render(){
+        var clock = Math.round(this.state.clock / 1000);
+        return (
+            <div >
+                <p>You have been on this site since: </p>
+                <span>{clock}</span>
+                <p>Seconds.</p>
+            </div>
+        )
+    }
+}
+
+class App extends Component {
   render() {
-    
     // console.log(React);
     return (
       <div className="App">
@@ -18,8 +47,6 @@ class App extends Component {
     );
   }
 }
-
-
 App.defaultProps ={
   propNumber:3,
   propString:"This is prop string",
