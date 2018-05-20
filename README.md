@@ -1,0 +1,4 @@
+react-basics{
+  manual-binding
+
+}
